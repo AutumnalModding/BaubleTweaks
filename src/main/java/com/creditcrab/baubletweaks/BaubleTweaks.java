@@ -25,6 +25,7 @@ public class BaubleTweaks {
     public static CommonProxy proxy;
 
     public static Item baubleOfRevealing;
+    public static Item baublePrimal;
 
     @Mod.EventHandler
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
@@ -33,7 +34,10 @@ public class BaubleTweaks {
         proxy.preInit(event);
         baubleOfRevealing = new BaubleOfRevealing(ThaumcraftApi.armorMatSpecial,4,0);
         GameRegistry.registerItem(baubleOfRevealing,"baubleOfRevealing","baubletweaks");
+        baublePrimal = new BaublePrimal();
+        GameRegistry.registerItem(baublePrimal,"baublePrimal","baubletweaks");
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.headType,1);
+        BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.charmType,1);
     }
 
     @Mod.EventHandler
