@@ -32,10 +32,6 @@ public class BaubleTweaks {
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
-        baubleOfRevealing = new BaubleOfRevealing(ThaumcraftApi.armorMatSpecial,4,0);
-        GameRegistry.registerItem(baubleOfRevealing,"baubleOfRevealing","baubletweaks");
-        baublePrimal = new BaublePrimal();
-        GameRegistry.registerItem(baublePrimal,"baublePrimal","baubletweaks");
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.headType,1);
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.charmType,1);
     }

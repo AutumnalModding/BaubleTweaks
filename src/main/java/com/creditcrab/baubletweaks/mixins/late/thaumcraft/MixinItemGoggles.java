@@ -3,12 +3,19 @@ package com.creditcrab.baubletweaks.mixins.late.thaumcraft;
 
 import baubles.api.BaubleType;
 import baubles.api.expanded.BaubleExpandedSlots;
+import baubles.api.expanded.BaubleItemHelper;
 import baubles.api.expanded.IBaubleExpanded;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import thaumcraft.common.items.armor.ItemGoggles;
+
+import java.util.List;
 
 @Mixin(ItemGoggles.class)
 public abstract class MixinItemGoggles extends ItemArmor implements IBaubleExpanded {
@@ -49,5 +56,11 @@ public abstract class MixinItemGoggles extends ItemArmor implements IBaubleExpan
     @Override
     public boolean canUnequip(ItemStack itemStack, EntityLivingBase entityLivingBase) {
         return true;
+    }
+    @Inject(method = "addInformation",at=@At("RETURN"))
+    protected void onAddInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4, CallbackInfo ci){
+
+        BaubleItemHelper.addSlotInformation(par3List,new String[]{BaubleExpandedSlots.headType});
+
     }
 }

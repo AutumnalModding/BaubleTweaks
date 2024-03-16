@@ -25,9 +25,15 @@ public class BaubleTweaksLateMixins implements ILateMixinLoader {
             mixins.add("thaumcraft.MixinTileNodeRenderer");
             mixins.add("thaumcraft.MixinRenderEventHandler");
         }
+
         mixins.add("thaumicexploration.MixinItemFoodTalisman");
         mixins.add("thaumcraft.MixinItemGoggles");
         mixins.add("thaumcraft.MixinItemResource");
+
+        mixins.add("thaumictinkerer.MixinItemCleansingTalisman");
+        mixins.add("thaumictinkerer.MixinItemXPTalisman");
+
+        mixins.add("botania.MixinItemDivaCharm");
         return mixins;
     }
 }

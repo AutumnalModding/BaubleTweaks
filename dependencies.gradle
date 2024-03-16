@@ -37,6 +37,8 @@ dependencies {
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.5.4-GTNH:dev")
     implementation deobfCurse("thaumcraft-223628:2227552")
     implementation deobfCurse("thaumicexploration-230969:2263414")
+    implementation deobfCurse("thaumictinkerer-75598:2232793")
+    implementation deobfCurse("botania-225643:2283837")
     api("maven.modrinth:baubles-expanded:2.1.4")
     runtimeOnlyNonPublishable("curse.maven:endercore-231868:4671288")
 }
