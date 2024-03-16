@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package com.creditcrab.baubletweaks;
 
 import java.io.File;
 

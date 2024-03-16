@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package com.creditcrab.baubletweaks;
 
 public class ClientProxy extends CommonProxy {
 

@@ -1,5 +1,8 @@
-package com.myname.mymodid;
+package com.creditcrab.baubletweaks;
 
+import baubles.api.expanded.BaubleExpandedSlots;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.item.Item;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,21 +12,28 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import thaumcraft.api.ThaumcraftApi;
 
-@Mod(modid = MyMod.MODID, version = Tags.VERSION, name = "MyMod", acceptedMinecraftVersions = "[1.7.10]")
-public class MyMod {
+@Mod(modid = BaubleTweaks.MODID, version = Tags.VERSION, name = "BaubleTweaks", acceptedMinecraftVersions = "[1.7.10]",
+dependencies = "after:Thaumcraft")
+public class BaubleTweaks {
 
-    public static final String MODID = "mymodid";
+    public static final String MODID = "baubletweaks";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
-    @SidedProxy(clientSide = "com.myname.mymodid.ClientProxy", serverSide = "com.myname.mymodid.CommonProxy")
+    @SidedProxy(clientSide = "com.creditcrab.baubletweaks.ClientProxy", serverSide = "com.creditcrab.baubletweaks.CommonProxy")
     public static CommonProxy proxy;
+
+    public static Item baubleOfRevealing;
 
     @Mod.EventHandler
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
+        baubleOfRevealing = new BaubleOfRevealing(ThaumcraftApi.armorMatSpecial,4,0);
+        GameRegistry.registerItem(baubleOfRevealing,"baubleOfRevealing","baubletweaks");
+        BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.headType,1);
     }
 
     @Mod.EventHandler

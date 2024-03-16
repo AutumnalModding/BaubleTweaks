@@ -35,4 +35,6 @@
  */
 dependencies {
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.5.4-GTNH:dev")
+    implementation deobfCurse("thaumcraft-223628:2227552")
+    api("maven.modrinth:baubles-expanded:2.1.4")
 }
