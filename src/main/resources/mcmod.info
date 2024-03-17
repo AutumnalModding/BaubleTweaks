@@ -3,19 +3,19 @@
 	"modList": [{
 		"modid": "${modId}",
 		"name": "${modName}",
-		"description": "An example mod for Minecraft 1.7.10 with Forge focused on a stable setup.",
+		"description": "A mod that tweaks baubles and items from various mods to make use of baubles expanded slots.",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
-		"url": "https://github.com/SinTh0r4s/MyMod",
+		"url": "",
 		"updateUrl": "",
-		"authorList": ["SinTho0r4s"],
+		"authorList": ["creditcrab"],
 		"credits": "",
 		"logoFile": "",
 		"screenshots": [],
 		"parent": "",
 		"requiredMods": [],
 		"dependencies": [],
-		"dependants": [],
+		"dependants": [BaublesExpanded],
 		"useDependencyInformation": false
 	}]
 }

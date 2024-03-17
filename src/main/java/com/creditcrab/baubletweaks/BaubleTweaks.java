@@ -33,6 +33,7 @@ public class BaubleTweaks {
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.headType,1);
+        BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.bodyType,1);
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.charmType,1);
     }
 

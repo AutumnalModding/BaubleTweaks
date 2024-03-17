@@ -35,10 +35,13 @@
  */
 dependencies {
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.5.4-GTNH:dev")
-    implementation deobfCurse("thaumcraft-223628:2227552")
-    implementation deobfCurse("thaumicexploration-230969:2263414")
-    implementation deobfCurse("thaumictinkerer-75598:2232793")
-    implementation deobfCurse("botania-225643:2283837")
-    api("maven.modrinth:baubles-expanded:2.1.4")
+    devOnlyNonPublishable deobfCurse("thaumcraft-223628:2227552")
+    devOnlyNonPublishable deobfCurse("thaumicexploration-230969:2263414")
+    devOnlyNonPublishable deobfCurse("thaumictinkerer-75598:2232793")
+    devOnlyNonPublishable deobfCurse("botania-225643:2283837")
+    devOnlyNonPublishable("curse.maven:cofhcore-69162:2388750")
+    devOnlyNonPublishable("curse.maven:thermalfoundation-222880:2388752")
+    devOnlyNonPublishable deobfCurse("thermalexpansion-69163:2388758")
+    implementation("maven.modrinth:baubles-expanded:2.1.4")
     runtimeOnlyNonPublishable("curse.maven:endercore-231868:4671288")
 }

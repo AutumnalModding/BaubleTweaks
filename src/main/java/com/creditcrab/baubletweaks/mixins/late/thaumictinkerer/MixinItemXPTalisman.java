@@ -17,7 +17,7 @@ import thaumic.tinkerer.common.registry.ItemBase;
 import java.util.List;
 
 @Mixin(ItemXPTalisman.class)
-public abstract class MixinItemXPTalisman implements IBaubleExpanded {
+public abstract class MixinItemXPTalisman extends ItemBase implements IBaubleExpanded {
     @Override
     public String[] getBaubleTypes(ItemStack itemStack) {
         return new String[]{BaubleExpandedSlots.amuletType,BaubleExpandedSlots.charmType};
