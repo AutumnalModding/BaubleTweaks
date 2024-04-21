@@ -28,7 +28,7 @@ import java.util.List;
 @Mixin(value = ItemFoodTalisman.class,remap = false)
 public abstract class MixinItemFoodTalisman extends Item implements IBaubleExpanded {
 
-    @Inject(method = "addInformation", at=@At("HEAD"))
+    @Inject(method = "addInformation", at=@At("RETURN"))
     protected void onAddInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4, CallbackInfo ci){
         BaubleItemHelper.addSlotInformation(par3List,new String[]{BaubleExpandedSlots.charmType});
     }

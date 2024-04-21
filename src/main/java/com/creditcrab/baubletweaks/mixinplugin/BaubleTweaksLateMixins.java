@@ -1,5 +1,6 @@
 package com.creditcrab.baubletweaks.mixinplugin;
 
+import com.creditcrab.baubletweaks.BaubleTweaks;
 import com.gtnewhorizon.gtnhmixins.ILateMixinLoader;
 import com.gtnewhorizon.gtnhmixins.LateMixin;
 import cpw.mods.fml.common.Loader;
@@ -41,8 +42,12 @@ public class BaubleTweaksLateMixins implements ILateMixinLoader {
         if (Loader.isModLoaded("Botania")){
             mixins.add("botania.MixinItemDivaCharm");
             mixins.add("botania.MixinItemFlightTiara");
+
             mixins.add("botania.MixinHUDHandler");
             mixins.add("botania.MixinItemHolyCloak");
+            mixins.add("botania.MixinItemGoldenLaurel");
+            mixins.add("botania.MixinItemMonocle");
+            mixins.add("botania.MixinItemItemFinder");
         }
         if(Loader.isModLoaded("ThermalExpansion")){
             mixins.add("thermalexpansion.MixinItemCapacitor");
