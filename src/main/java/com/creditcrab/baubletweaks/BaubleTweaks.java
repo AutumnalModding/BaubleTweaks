@@ -25,10 +25,9 @@ public class BaubleTweaks {
     public static final String MODID = "baubletweaks";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
-    public static final Configuration CONFIGURATION = new Configuration(new File(Loader.instance().getConfigDir(),"BaubleTweaks.cfg"));
+    public static  Configuration CONFIGURATION;
 
-    @SidedProxy(clientSide = "com.creditcrab.baubletweaks.ClientProxy", serverSide = "com.creditcrab.baubletweaks.CommonProxy")
-    public static CommonProxy proxy;
+
 
     public static boolean gogglesOfRevealing = true;
     public static boolean foodTalisman = true;
@@ -46,7 +45,8 @@ public class BaubleTweaks {
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
-        proxy.preInit(event);
+        CONFIGURATION = new Configuration(new File(Loader.instance().getConfigDir(),"BaubleTweaks.cfg"));
+        BaubleTweaks.CONFIGURATION.load();
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.headType,1);
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.bodyType,1);
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.charmType,1);
@@ -59,26 +59,9 @@ public class BaubleTweaks {
         flightTiara = CONFIGURATION.get("Botania","Flight Tiara",flightTiara).getBoolean(flightTiara);
         holyCloak = CONFIGURATION.get("Botania","Holy Cloak",holyCloak).getBoolean(holyCloak);
         goldenLaurel = CONFIGURATION.get("Botania","Golden Laurel",goldenLaurel).getBoolean(goldenLaurel);
-        monocle = CONFIGURATION.get("Botania","Monocle",monocle).getBoolean(monocle);
+        monocle = CONFIGURATION.get("Botania","Manaseer Monocle",monocle).getBoolean(monocle);
         itemFinder = CONFIGURATION.get("Botania","The Spectator",itemFinder).getBoolean(itemFinder);
         capacitor = CONFIGURATION.get("Thermal Expansion","Flux Capacitor",capacitor).getBoolean(capacitor);
-    }
-
-    @Mod.EventHandler
-    // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
-    public void init(FMLInitializationEvent event) {
-        proxy.init(event);
-    }
-
-    @Mod.EventHandler
-    // postInit "Handle interaction with other mods, complete your setup based on this." (Remove if not needed)
-    public void postInit(FMLPostInitializationEvent event) {
-        proxy.postInit(event);
-    }
-
-    @Mod.EventHandler
-    // register server commands in this event handler (Remove if not needed)
-    public void serverStarting(FMLServerStartingEvent event) {
-        proxy.serverStarting(event);
+        CONFIGURATION.save();
     }
 }
