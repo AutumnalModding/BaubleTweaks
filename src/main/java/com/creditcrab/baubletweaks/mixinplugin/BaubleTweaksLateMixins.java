@@ -39,20 +39,28 @@ public class BaubleTweaksLateMixins implements ILateMixinLoader {
         boolean itemFinder = true;
         boolean capacitor = true;
 
+
         var config = new Configuration(new File(Loader.instance().getConfigDir(),"BaubleTweaks.cfg"));
         config.load();
-        BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.headType,1);
-        BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.bodyType,1);
-        BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.charmType,1);
         if (Loader.isModLoaded("Thaumcraft")){
             gogglesOfRevealing = config.get("Thaumcraft","Goggles of Revealing",gogglesOfRevealing).getBoolean(gogglesOfRevealing);
+        }
+        else{
+            gogglesOfRevealing = false;
         }
         if (Loader.isModLoaded("ThaumicExploration")){
             foodTalisman =  config.get("Thaumic Exploration","Food Talisman",foodTalisman).getBoolean(foodTalisman);
         }
+        else{
+            foodTalisman = false;
+        }
         if (Loader.isModLoaded("ThaumicTinkerer")){
             cleansingTalisman = config.get("Thaumic Tinkerer","Cleansing Talisman",cleansingTalisman).getBoolean(cleansingTalisman);
             xpTalisman = config.get("Thaumic Tinkerer","XP Talisman",xpTalisman).getBoolean(xpTalisman);
+        }
+        else{
+            cleansingTalisman = false;
+            xpTalisman = false;
         }
         if (Loader.isModLoaded("Botania")){
             divaCharm = config.get("Botania","Diva Charm",divaCharm).getBoolean(divaCharm);
@@ -62,8 +70,19 @@ public class BaubleTweaksLateMixins implements ILateMixinLoader {
             monocle = config.get("Botania","Manaseer Monocle",monocle).getBoolean(monocle);
             itemFinder = config.get("Botania","The Spectator",itemFinder).getBoolean(itemFinder);
         }
+        else{
+            divaCharm = false;
+            flightTiara = false;
+            holyCloak = false;
+            goldenLaurel = false;
+            monocle = false;
+            itemFinder = false;
+        }
         if(Loader.isModLoaded("ThermalExpansion")){
             capacitor = config.get("Thermal Expansion","Flux Capacitor",capacitor).getBoolean(capacitor);
+        }
+        else {
+            capacitor = false;
         }
         config.save();
 
