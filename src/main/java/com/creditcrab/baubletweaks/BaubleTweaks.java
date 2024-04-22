@@ -29,39 +29,12 @@ public class BaubleTweaks {
 
 
 
-    public static boolean gogglesOfRevealing = true;
-    public static boolean foodTalisman = true;
-    public static boolean cleansingTalisman = true;
-    public static  boolean xpTalisman = true;
-    public static boolean divaCharm = true;
-    public static boolean flightTiara = true;
-    public static boolean holyCloak = true;
-    public static boolean goldenLaurel = true;
-    public static boolean monocle = true;
-    public static boolean itemFinder = true;
-    public static boolean capacitor = true;
+
 
     @Mod.EventHandler
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
-        CONFIGURATION = new Configuration(new File(Loader.instance().getConfigDir(),"BaubleTweaks.cfg"));
-        BaubleTweaks.CONFIGURATION.load();
-        BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.headType,1);
-        BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.bodyType,1);
-        BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.charmType,1);
 
-        gogglesOfRevealing = CONFIGURATION.get("Thaumcraft","Goggles of Revealing",gogglesOfRevealing).getBoolean(gogglesOfRevealing);
-        foodTalisman =  CONFIGURATION.get("Thaumic Exploration","Food Talisman",foodTalisman).getBoolean(foodTalisman);
-        cleansingTalisman = CONFIGURATION.get("Thaumic Tinkerer","Cleansing Talisman",cleansingTalisman).getBoolean(cleansingTalisman);
-        xpTalisman = CONFIGURATION.get("Thaumic Tinkerer","XP Talisman",xpTalisman).getBoolean(xpTalisman);
-        divaCharm = CONFIGURATION.get("Botania","Diva Charm",divaCharm).getBoolean(divaCharm);
-        flightTiara = CONFIGURATION.get("Botania","Flight Tiara",flightTiara).getBoolean(flightTiara);
-        holyCloak = CONFIGURATION.get("Botania","Holy Cloak",holyCloak).getBoolean(holyCloak);
-        goldenLaurel = CONFIGURATION.get("Botania","Golden Laurel",goldenLaurel).getBoolean(goldenLaurel);
-        monocle = CONFIGURATION.get("Botania","Manaseer Monocle",monocle).getBoolean(monocle);
-        itemFinder = CONFIGURATION.get("Botania","The Spectator",itemFinder).getBoolean(itemFinder);
-        capacitor = CONFIGURATION.get("Thermal Expansion","Flux Capacitor",capacitor).getBoolean(capacitor);
-        CONFIGURATION.save();
     }
 }
