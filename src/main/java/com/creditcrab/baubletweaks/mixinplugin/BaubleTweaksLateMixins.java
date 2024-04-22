@@ -39,33 +39,33 @@ public class BaubleTweaksLateMixins implements ILateMixinLoader {
         boolean itemFinder = true;
         boolean capacitor = true;
 
-        var CONFIGURATION = new Configuration(new File(Loader.instance().getConfigDir(),"BaubleTweaks.cfg"));
-        BaubleTweaks.CONFIGURATION.load();
+        var config = new Configuration(new File(Loader.instance().getConfigDir(),"BaubleTweaks.cfg"));
+        config.load();
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.headType,1);
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.bodyType,1);
         BaubleExpandedSlots.tryAssignSlotsUpToMinimum(BaubleExpandedSlots.charmType,1);
         if (Loader.isModLoaded("Thaumcraft")){
-            gogglesOfRevealing = CONFIGURATION.get("Thaumcraft","Goggles of Revealing",gogglesOfRevealing).getBoolean(gogglesOfRevealing);
+            gogglesOfRevealing = config.get("Thaumcraft","Goggles of Revealing",gogglesOfRevealing).getBoolean(gogglesOfRevealing);
         }
         if (Loader.isModLoaded("ThaumicExploration")){
-            foodTalisman =  CONFIGURATION.get("Thaumic Exploration","Food Talisman",foodTalisman).getBoolean(foodTalisman);
+            foodTalisman =  config.get("Thaumic Exploration","Food Talisman",foodTalisman).getBoolean(foodTalisman);
         }
         if (Loader.isModLoaded("ThaumicTinkerer")){
-            cleansingTalisman = CONFIGURATION.get("Thaumic Tinkerer","Cleansing Talisman",cleansingTalisman).getBoolean(cleansingTalisman);
-            xpTalisman = CONFIGURATION.get("Thaumic Tinkerer","XP Talisman",xpTalisman).getBoolean(xpTalisman);
+            cleansingTalisman = config.get("Thaumic Tinkerer","Cleansing Talisman",cleansingTalisman).getBoolean(cleansingTalisman);
+            xpTalisman = config.get("Thaumic Tinkerer","XP Talisman",xpTalisman).getBoolean(xpTalisman);
         }
         if (Loader.isModLoaded("Botania")){
-            divaCharm = CONFIGURATION.get("Botania","Diva Charm",divaCharm).getBoolean(divaCharm);
-            flightTiara = CONFIGURATION.get("Botania","Flight Tiara",flightTiara).getBoolean(flightTiara);
-            holyCloak = CONFIGURATION.get("Botania","Holy Cloak",holyCloak).getBoolean(holyCloak);
-            goldenLaurel = CONFIGURATION.get("Botania","Golden Laurel",goldenLaurel).getBoolean(goldenLaurel);
-            monocle = CONFIGURATION.get("Botania","Manaseer Monocle",monocle).getBoolean(monocle);
-            itemFinder = CONFIGURATION.get("Botania","The Spectator",itemFinder).getBoolean(itemFinder);
+            divaCharm = config.get("Botania","Diva Charm",divaCharm).getBoolean(divaCharm);
+            flightTiara = config.get("Botania","Flight Tiara",flightTiara).getBoolean(flightTiara);
+            holyCloak = config.get("Botania","Holy Cloak",holyCloak).getBoolean(holyCloak);
+            goldenLaurel = config.get("Botania","Golden Laurel",goldenLaurel).getBoolean(goldenLaurel);
+            monocle = config.get("Botania","Manaseer Monocle",monocle).getBoolean(monocle);
+            itemFinder = config.get("Botania","The Spectator",itemFinder).getBoolean(itemFinder);
         }
         if(Loader.isModLoaded("ThermalExpansion")){
-            capacitor = CONFIGURATION.get("Thermal Expansion","Flux Capacitor",capacitor).getBoolean(capacitor);
+            capacitor = config.get("Thermal Expansion","Flux Capacitor",capacitor).getBoolean(capacitor);
         }
-        CONFIGURATION.save();
+        config.save();
 
 
         List<String> mixins = new ArrayList<>();
