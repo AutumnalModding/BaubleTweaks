@@ -62,7 +62,7 @@ public abstract class MixinItemFlightTiara extends ItemBauble implements IBauble
      * @return
      */
     @Overwrite
-    private boolean shouldPlayerHaveFlight(EntityPlayer player){
+    public boolean shouldPlayerHaveFlight(EntityPlayer player){
         ItemStack tiara = BaublesApi.getBaubles(player).getStackInSlot(BaubleExpandedSlots.getIndexOfTypeInRegisteredTypes(BaubleExpandedSlots.headType));
         if (tiara != null && tiara.getItem() == this) {
             int left = ItemNBTHelper.getInt(tiara, "timeLeft", 1200);
