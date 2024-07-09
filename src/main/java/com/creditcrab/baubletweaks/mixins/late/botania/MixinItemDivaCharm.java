@@ -32,8 +32,6 @@ import java.util.List;
 
 @Mixin(value = ItemDivaCharm.class,remap = false)
 public abstract class MixinItemDivaCharm  extends ItemBauble implements IBaubleExpanded, IManaUsingItem, IBaubleRender {
-
-
     public MixinItemDivaCharm(String name) {
         super(name);
     }
@@ -42,23 +40,23 @@ public abstract class MixinItemDivaCharm  extends ItemBauble implements IBaubleE
     public String[] getBaubleTypes(ItemStack itemStack) {
         return new String[]{BaubleExpandedSlots.charmType};
     }
+
+    @SuppressWarnings("unchecked")
     @Override
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        BaubleItemHelper.addSlotInformation(par3List,getBaubleTypes(par1ItemStack));
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+        BaubleItemHelper.addSlotInformation(list,getBaubleTypes(stack));
     }
 
     /**
-     * @Author Nick
-     * @Reason use extended bauble query in damage event
-     * @param event
+     * @author Nick
+     * @reason use extended bauble query in damage event
      */
     @SubscribeEvent
     @Overwrite
     public void onEntityDamaged(LivingHurtEvent event) {
-        if (event.source.getEntity() instanceof EntityPlayer && event.entityLiving instanceof EntityLiving && !event.entityLiving.worldObj.isRemote && Math.random() < 0.6000000238418579) {
-            EntityPlayer player = (EntityPlayer)event.source.getEntity();
+        if (event.source.getEntity() instanceof EntityPlayer player && event.entityLiving instanceof EntityLiving && !event.entityLiving.worldObj.isRemote && Math.random() < 0.6000000238418579) {
             ItemStack charm = BaublesApi.getBaubles(player).getStackInSlot(BaubleExpandedSlots.getIndexesOfAssignedSlotsOfType(BaubleExpandedSlots.charmType)[0]);
-            if (charm != null && charm.getItem() == ((ItemDivaCharm)(Object)this)) {
+            if (charm != null && charm.getItem() == (Object)this) {
                 if (ManaItemHandler.requestManaExact(charm, player, 250, false)) {
                     List<IMob> mobs = player.worldObj.getEntitiesWithinAABB(IMob.class, AxisAlignedBB.getBoundingBox(event.entity.posX - 20.0, event.entity.posY - 20.0, event.entity.posZ - 20.0, event.entity.posX + 20.0, event.entity.posY + 20.0, event.entity.posZ + 20.0));
                     if (mobs.size() > 1 && SubTileHeiseiDream.brainwashEntity((EntityLiving)event.entityLiving, mobs)) {

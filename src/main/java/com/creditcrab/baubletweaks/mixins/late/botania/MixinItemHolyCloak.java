@@ -65,12 +65,10 @@ public abstract class MixinItemHolyCloak extends ItemBauble implements IBaubleRe
     @Overwrite
     @SubscribeEvent
     public void onPlayerDamage(LivingHurtEvent event) {
-        if (event.entityLiving instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer)event.entityLiving;
+        if (event.entityLiving instanceof EntityPlayer player) {
             IInventory baubles = BaublesApi.getBaubles(player);
             ItemStack baub = baubles.getStackInSlot(BaubleExpandedSlots.getIndexesOfAssignedSlotsOfType(baubleTypes[0])[0]);
-            if (baub != null && baub.getItem() instanceof ItemHolyCloak && !isInEffect(baub)) {
-                ItemHolyCloak cloak = (ItemHolyCloak)baub.getItem();
+            if (baub != null && baub.getItem() instanceof ItemHolyCloak cloak && !isInEffect(baub)) {
                 int cooldown = getCooldown(baub);
                 setInEffect(baub, true);
                 if (cooldown == 0 && cloak.effectOnDamage(event, player, baub)) {

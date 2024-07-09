@@ -35,17 +35,16 @@ public abstract class MixinItemGoldenLaurel extends ItemBauble implements IBaubl
         super(name);
     }
 
-    @SubscribeEvent(
-        priority = EventPriority.HIGHEST
-    )
     /**
      * @author Nick
      * @reason Stop making me write these :(
      */
+    @SubscribeEvent(
+        priority = EventPriority.HIGHEST
+    )
     @Overwrite
     public void onPlayerDeath(LivingDeathEvent event) {
-        if (event.entity instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer)event.entity;
+        if (event.entity instanceof EntityPlayer player) {
             IInventory baubles = BaublesApi.getBaubles(player);
             int slot = BaubleExpandedSlots.getIndexesOfAssignedSlotsOfType(BaubleExpandedSlots.headType)[0];
             ItemStack amulet = baubles.getStackInSlot(slot);
@@ -53,7 +52,7 @@ public abstract class MixinItemGoldenLaurel extends ItemBauble implements IBaubl
                 event.setCanceled(true);
                 player.setHealth(player.getMaxHealth());
                 player.addPotionEffect(new PotionEffect(Potion.resistance.id, 300, 6));
-                player.addChatMessage(new ChatComponentTranslation("botaniamisc.savedByLaurel", new Object[0]));
+                player.addChatMessage(new ChatComponentTranslation("botaniamisc.savedByLaurel"));
                 player.worldObj.playSoundAtEntity(player, "botania:goldenLaurel", 1.0F, 0.3F);
                 baubles.setInventorySlotContents(slot,null);
             }

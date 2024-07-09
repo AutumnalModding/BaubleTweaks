@@ -42,16 +42,17 @@ public abstract class MixinItemMonocle extends ItemBauble implements IBaubleExpa
 
     }
 
+    /**
+     * @author Nick
+     * @reason Stop making me write these :(
+     */
     @Overwrite
     public static boolean hasMonocle(EntityPlayer player) {
 
         ItemStack stack = BaublesApi.getBaubles(player).getStackInSlot(BaubleExpandedSlots.getIndexesOfAssignedSlotsOfType(BaubleExpandedSlots.headType)[0]);
         if(stack == null) return false;
         Item item = stack.getItem();
-        if (item instanceof IBurstViewerBauble) {
-            return true;
-        }
-        return false;
+        return item instanceof IBurstViewerBauble;
     }
 
 }

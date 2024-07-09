@@ -4,8 +4,6 @@ import baubles.api.BaublesApi;
 import baubles.api.expanded.BaubleExpandedSlots;
 import baubles.api.expanded.BaubleItemHelper;
 import baubles.api.expanded.IBaubleExpanded;
-import baubles.common.BaublesExpanded;
-import baubles.common.lib.PlayerHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -38,32 +36,38 @@ import java.util.List;
 import static vazkii.botania.common.item.equipment.bauble.ItemFlightTiara.playerStr;
 import static vazkii.botania.common.item.equipment.bauble.ItemFlightTiara.playersWithFlight;
 
+@SuppressWarnings("unchecked")
 @Mixin(value = ItemFlightTiara.class, remap = false)
 public abstract class MixinItemFlightTiara extends ItemBauble implements IBaubleExpanded, IManaUsingItem, IBaubleRender, ICraftAchievement {
+    @Shadow
+    private static ResourceLocation textureHud;
+
+    @Shadow
+    public abstract int getCost(ItemStack stack, int timeLeft);
+
     public MixinItemFlightTiara(String name) {
         super(name);
     }
 
     @Override
     public String[] getBaubleTypes(ItemStack itemStack) {
-        return new String[]{BaubleExpandedSlots.headType};
+        return new String[]{BaubleExpandedSlots.wingsType};
     }
 
     @Override
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        par3List.add(StatCollector.translateToLocal("botania.wings" + par1ItemStack.getItemDamage()));
-        BaubleItemHelper.addSlotInformation(par3List,this.getBaubleTypes(par1ItemStack));
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean unused) {
+        list.add(StatCollector.translateToLocal("botania.wings" + stack.getItemDamage()));
+        BaubleItemHelper.addSlotInformation(list,this.getBaubleTypes(stack));
     }
 
     /**
      *
      * @author Nick
-     * @Reason update to extended bauble api
-     * @return
+     * @reason update to extended bauble api
      */
     @Overwrite
     public boolean shouldPlayerHaveFlight(EntityPlayer player){
-        ItemStack tiara = BaublesApi.getBaubles(player).getStackInSlot(BaubleExpandedSlots.getIndexOfTypeInRegisteredTypes(BaubleExpandedSlots.headType));
+        ItemStack tiara = BaublesApi.getBaubles(player).getStackInSlot(BaubleExpandedSlots.getIndexOfTypeInRegisteredTypes(BaubleExpandedSlots.wingsType));
         if (tiara != null && tiara.getItem() == this) {
             int left = ItemNBTHelper.getInt(tiara, "timeLeft", 1200);
             boolean flying = ItemNBTHelper.getBoolean(tiara, "flying", false);
@@ -73,20 +77,15 @@ public abstract class MixinItemFlightTiara extends ItemBauble implements IBauble
         }
     }
 
-    @Shadow
-    public abstract int getCost(ItemStack stack, int timeLeft);
-
     /**
      * @author Nick
-     * @Reason rewrite to extended bauble API
-     * @param event
+     * @reason rewrite to extended bauble API
      */
     @Overwrite
     @SubscribeEvent
     public void updatePlayerFlyStatus(LivingEvent.LivingUpdateEvent event) {
-        if (event.entityLiving instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer)event.entityLiving;
-            ItemStack tiara = BaublesApi.getBaubles(player).getStackInSlot(BaubleExpandedSlots.getIndexesOfAssignedSlotsOfType(BaubleExpandedSlots.headType)[0]);
+        if (event.entityLiving instanceof EntityPlayer player) {
+            ItemStack tiara = BaublesApi.getBaubles(player).getStackInSlot(BaubleExpandedSlots.getIndexesOfAssignedSlotsOfType(BaubleExpandedSlots.wingsType)[0]);
             int left = ItemNBTHelper.getInt(tiara, "timeLeft", 1200);
             //System.out.println("timeleft " + left);
             if (playersWithFlight.contains(playerStr(player))) {
@@ -99,7 +98,6 @@ public abstract class MixinItemFlightTiara extends ItemBauble implements IBauble
                             double x = event.entityLiving.posX - 0.5;
                             double y = event.entityLiving.posY - 1.7;
                             double z = event.entityLiving.posZ - 0.5;
-                            player.getGameProfile().getName();
                             float r = 1.0F;
                             float g = 1.0F;
                             float b = 1.0F;
@@ -164,10 +162,6 @@ public abstract class MixinItemFlightTiara extends ItemBauble implements IBauble
 
     }
 
-
-    @Shadow
-    private static ResourceLocation textureHud;
-
     /**
      *
      * @author Nick
@@ -221,6 +215,4 @@ public abstract class MixinItemFlightTiara extends ItemBauble implements IBauble
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.renderEngine.bindTexture(Gui.icons);
     }
-
-
 }

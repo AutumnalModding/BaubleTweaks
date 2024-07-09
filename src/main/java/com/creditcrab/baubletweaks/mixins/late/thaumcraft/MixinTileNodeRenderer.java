@@ -40,9 +40,8 @@ public abstract class MixinTileNodeRenderer extends TileEntitySpecialRenderer {
      */
     @Overwrite()
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float partialTicks) {
-        if (tile instanceof INode) {
+        if (tile instanceof INode node) {
             float size = 1.0F;
-            INode node = (INode)tile;
             double viewDistance = 64.0;
             EntityLivingBase viewer = Minecraft.getMinecraft().renderViewEntity;
             boolean condition = false;
@@ -55,7 +54,7 @@ public abstract class MixinTileNodeRenderer extends TileEntitySpecialRenderer {
                 } else if (((EntityPlayer)viewer).inventory.armorItemInSlot(3) != null && ((EntityPlayer)viewer).inventory.armorItemInSlot(3).getItem() instanceof IRevealer && ((IRevealer)((EntityPlayer)viewer).inventory.armorItemInSlot(3).getItem()).showNodes(((EntityPlayer)viewer).inventory.armorItemInSlot(3), viewer)) {
                     condition = true;
                     depthIgnore = true;
-                } else if (((EntityPlayer)viewer).inventory.getCurrentItem() != null && ((EntityPlayer)viewer).inventory.getCurrentItem().getItem() instanceof ItemThaumometer && UtilsFX.isVisibleTo(0.44F, viewer, (double)tile.xCoord, (double)tile.yCoord, (double)tile.zCoord)) {
+                } else if (((EntityPlayer)viewer).inventory.getCurrentItem() != null && ((EntityPlayer)viewer).inventory.getCurrentItem().getItem() instanceof ItemThaumometer && UtilsFX.isVisibleTo(0.44F, viewer, tile.xCoord, tile.yCoord, tile.zCoord)) {
                     condition = true;
                     depthIgnore = true;
                     viewDistance = 48.0;

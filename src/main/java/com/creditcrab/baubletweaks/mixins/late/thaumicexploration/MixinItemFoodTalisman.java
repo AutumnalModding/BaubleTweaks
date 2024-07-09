@@ -41,7 +41,7 @@ public abstract class MixinItemFoodTalisman extends Item implements IBaubleExpan
     @Override
     public String[] getBaubleTypes(ItemStack itemStack) {
         return new String[] {BaubleExpandedSlots.charmType};
-        };
+        }
 
     @Override
     public BaubleType getBaubleType(ItemStack itemStack) {

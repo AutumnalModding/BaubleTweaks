@@ -68,7 +68,7 @@ public abstract class MixinRenderEventHandler {
                     tagscale += 0.031F - tagscale / 10.0F;
                 }
 
-                this.drawTagsOnContainer((double)((float)target.blockX + (float)dir.offsetX / 2.0F), (double)((float)target.blockY + (float)dir.offsetY / 2.0F), (double)((float)target.blockZ + (float)dir.offsetZ / 2.0F), ot, 220, dir, event.partialTicks);
+                this.drawTagsOnContainer((float)target.blockX + (float)dir.offsetX / 2.0F, (float)target.blockY + (float)dir.offsetY / 2.0F, (float)target.blockZ + (float)dir.offsetZ / 2.0F, ot, 220, dir, event.partialTicks);
             }
         }
         InventoryBaubles baubles = (InventoryBaubles) BaublesApi.getBaubles((event.player) );
@@ -96,7 +96,7 @@ public abstract class MixinRenderEventHandler {
                         tagscale += 0.031F - tagscale / 10.0F;
                     }
 
-                    this.drawTagsOnContainer((double)target.blockX, (double)((float)target.blockY + (spaceAbove ? 0.4F : 0.0F) + shift), (double)target.blockZ, ((IAspectContainer)te).getAspects(), 220, spaceAbove ? ForgeDirection.UP : ForgeDirection.getOrientation(event.target.sideHit), event.partialTicks);
+                    this.drawTagsOnContainer(target.blockX, (float)target.blockY + (spaceAbove ? 0.4F : 0.0F) + shift, target.blockZ, ((IAspectContainer)te).getAspects(), 220, spaceAbove ? ForgeDirection.UP : ForgeDirection.getOrientation(event.target.sideHit), event.partialTicks);
                 }
 
                 if (note >= 0) {
@@ -104,7 +104,7 @@ public abstract class MixinRenderEventHandler {
                         PacketHandler.INSTANCE.sendToServer(new PacketNote(target.blockX, target.blockY, target.blockZ, event.player.worldObj.provider.dimensionId));
                     }
 
-                    this.drawTextInAir((double)target.blockX, (double)(target.blockY + 1), (double)target.blockZ, event.partialTicks, "Note: " + note);
+                    this.drawTextInAir(target.blockX, target.blockY + 1, target.blockZ, event.partialTicks, "Note: " + note);
                 }
             }
         }

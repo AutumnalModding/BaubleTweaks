@@ -52,8 +52,7 @@ public abstract class MixinItemResource extends Item implements IBaubleExpanded,
 
     @Override
     public boolean canEquip(ItemStack itemStack, EntityLivingBase entityLivingBase) {
-        if (itemStack.getItemDamage() == 15) return true;
-        return false;
+        return itemStack.getItemDamage() == 15;
     }
 
     @Override
